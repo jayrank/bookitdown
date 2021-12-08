@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ScheduleDown">
+    <meta name="author" content="ScheduleDown">
+    <link rel="icon" type="image/png" href="img/fav.png">
+    <title>ScheduleDown</title>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.min.css" />
+    <!-- Feather Icon-->
+    <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Sidebar CSS -->
+    <link href="vendor/sidebar/demo.css" rel="stylesheet">
+    <link href="vendor/rescalendar/css/rescalendar.css" rel="stylesheet">
+    <style type="text/css">
+        .cata-sub-nav {  
+            margin: 0 25px;
+            /* Make this scrollable when needed */
+            overflow-x: auto;
+            /* We don't want vertical scrolling */
+            overflow-y: hidden;
+            /* Make an auto-hiding scroller for the 3 people using a IE */
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            /* For WebKit implementations, provide inertia scrolling */
+            -webkit-overflow-scrolling: touch;
+            /* We don't want internal inline elements to wrap */
+            white-space: nowrap;
+            /* Remove the default scrollbar for WebKit implementations */
+        }
+        .cata-sub-nav::-webkit-scrollbar {
+                display: none;
+            }
+        .cata-sub-nav ul {
+            margin: 0;
+                display: flex;
+                  -webkit-padding-start: 0px;
+        }
+        .cata-sub-nav li {
+            display: inline-table;
+            margin: 0 10px;
+            font-size: 16px;
+        } 
+        .arrow{
+          background: red;
+        }
+        .nav-prev, .nav-next {
+            color: rgb(16, 25, 40);
+            /*width: 25px;*/
+            /*height: 25px;*/
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .nav-next { 
+            right: 15px; 
+            left: auto;
+        }
+        .nav-next svg, .nav-prev svg{
+            width: 16px;
+            height: 16px;
+            transition: transform 300ms ease 0s;
+            transform: translateX(0px);
+        }
+        .nav-prev:hover svg {
+            transform: translateX(-5px);
+        }
+        .nav-next:hover svg{
+            transform: translateX(5px);
+        }
+        .nav-prev:hover svg path, .nav-next:hover svg path{
+            fill: rgb(135, 140, 147)
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <div class="my-custom-body-wrapper">
+        <div class="my-custom-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="p-2 d-flex justify-content-between align-items-center pb-4">
+                            <span class="">
+                                <p class="m-0 m-0 align-items-center d-flex" style="color: rgb(135, 140, 147)">
+                                    <i class="cursor-pointer back-arrow font-weight-bolder previous feather-arrow-left mr-2"
+                                        onclick="nextPrev(-1)"></i> Step <span class="steps mx-1"> </span> of 4
+                                </p>
+                                <h4 class="m-auto font-weight-bolder">Select Service</h4>
+                            </span>
+                            <p class="cursor-pointer mb-0" onclick="history.back();"><i
+                                    class="text-white feather-x font-weight-bolder" style="font-size: 20px;"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1">
+                        <div class="service-menu" style="position: sticky;top:0;z-index: 9999;">
+                            <div id="service-menu-center">
+                                <nav class="navbar navbar-expand-sm bg-white">
+                                    <!-- <ul class="nav navbar-nav">
+                                        <li class="nav-item active">
+                                            <a class="font-weight-bolder text-dark p-2 rounded d-block"
+                                                href="#featured-service">Featured</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class=" font-weight-bolder text-dark p-2 rounded d-block"
+                                                href="#packages-service">Packages</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="font-weight-bolder text-dark p-2 rounded d-block"
+                                                href="#hair-care-service">Hair Care</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="font-weight-bolder text-dark p-2 rounded d-block"
+                                                href="#skincare-service">Skin Care</a>
+                                        </li>
+                                    </ul> -->
+                                    <div class="cata-sub-nav">
+                                        <div class="nav-prev" style="display: none;">
+                                            <svg class="Icon-c98r68-0 fKUQXh" viewBox="0 0 16 16"><path fill="#101928" fill-rule="evenodd" d="M5.937 3.2a.682.682 0 00-.965 0L.2 7.972a.694.694 0 00-.192.378v.004l-.008.1a.689.689 0 00.2.483l-.05-.055.032.037.018.018 4.772 4.772a.682.682 0 00.965-.964L2.329 9.136h11.99a.682.682 0 00.674-.58L15 8.454a.682.682 0 00-.682-.682H2.33l3.608-3.608a.682.682 0 00.072-.88z"></path></svg>
+                                        </div> 
+                                        <ul class=""> 
+                                            <li class="nav-item active"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#featured-service">Featured</a></li>
+                                            <li class="nav-item"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#packages-service">Packages</a></li>
+                                            <li class="nav-item"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#hair-care-service">Hair Care</a></li>
+                                            <li class="nav-item"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#skincare-service">Skin Care</a></li>
+                                            <li class="nav-item"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#hair-treatments">Hair Treatments</a></li>  
+                                            <li class="nav-item"><a class="font-weight-bolder text-dark p-2 rounded d-block" href="#half-head-of-highlights">Half Head of Highlights</a></li> 
+                                        </ul>
+                                        <div class="nav-next" style="">
+                                            <svg class="Icon-c98r68-0 fKUQXh" viewBox="0 0 16 16"><path fill="#101928" fill-rule="evenodd" d="M10.063 3.2a.682.682 0 01.965 0L15.8 7.972a.694.694 0 01.192.378v.004l.008.1a.689.689 0 01-.2.483l.05-.055a.686.686 0 01-.032.037l-.018.018-4.772 4.772a.682.682 0 01-.965-.964l3.608-3.609H1.681a.682.682 0 01-.674-.58L1 8.454c0-.377.305-.682.682-.682l11.989-.001-3.608-3.608a.682.682 0 01-.072-.88z"></path></svg>
+                                        </div> 
+                                    </div> 
+                                </nav> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-custom-body bg-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 offset-md-1 py-3">
+                        <div class="card shadow-sm">
+                            <!-- <div class="service-menu" style="position: sticky;top:0;z-index: 9999;">
+                                <div id="service-menu-center">
+                                    <nav class="navbar navbar-expand-sm bg-white">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item active">
+                                                <a class="font-weight-bolder text-dark p-2 rounded d-block" href="#featured-service">Featured</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class=" font-weight-bolder text-dark p-2 rounded d-block" href="#packages-service">Packages</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="font-weight-bolder text-dark p-2 rounded d-block" href="#hair-care-service">Hair Care</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="font-weight-bolder text-dark p-2 rounded d-block" href="#skincare-service">Skin Care</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div> -->
+                            <div class="card-body" id="my-card-body">
+                                <div class="step-tab-content">
+                                    <div class="container-fluid" id="featured-service">
+                                        <h3 class="my-2">Featured</h3>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Shampoo, Condition + Cut</h5>
+                                                                <h5 class="font-weight-bolder">$30</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <h6 class="font-weight-bolder text-muted">45 min</h6>
+                                                <p>
+                                                    Having a clear understanding of your requirements prior the
+                                                    treatment is very
+                                                    important so we have allocated enough time
+                                                    for a thorough consultation regarding your hair, style and, at your
+                                                    request, the
+                                                    scalp. Collectively our barbers have 33
+                                                    years’ experience in barbering and hairdressing so we feel we are
+                                                    well placed to
+                                                    understand and execute your desired
+                                                    look and feel.
+                                                    OWAY Frequently Use Hair and Scalp Bath and Conditioner (with lemon,
+                                                    white tea
+                                                    and Anisata) are used to cleanse and
+                                                    condition the hair and scalp. After the cut and before styling,
+                                                    clients enjoy a
+                                                    cooling hot towel to relax facial
+                                                    muscles and help remove any cut hair from the face, beard and neck.
+                                                    OWAY offers
+                                                    a variety of styling products - please
+                                                    indicate your preference or ask your barber to recommend a suitable
+                                                    option.
+
+                                                    Clients younger than 12 get to take home complimentary OWAY Hair
+                                                    Bath and
+                                                    Conditioner so they can continue the The
+                                                    Barbery experience at home.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <li class="has-menu" data-toggle="collapse" href="#collapseService1"
+                                                aria-expanded="false" aria-controls="collapseService1">
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Haeckels Skin Refining Express Facial</h5>
+                                                                <h5 class="font-weight-bolder">$20</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h - 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <ul class="list-style-none services collapse" id="collapseService1">
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid" id="packages-service">
+                                        <h3 class="my-2">Packages</h3>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li class="has-menu" data-toggle="collapse" href="#collapseService2"
+                                                aria-expanded="false" aria-controls="collapseService2">
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Haeckels Skin Refining Express Facial</h5>
+                                                                <h5 class="font-weight-bolder">$20</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h - 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <ul class="collapse list-style-none services" id="collapseService2">
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid" id="hair-care-service">
+                                        <h3 class="my-2">Hair Care</h3>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">45 min</h6>
+                                                <p>
+                                                    Having a clear understanding of your requirements prior the
+                                                    treatment is very
+                                                    important so we have allocated enough time
+                                                    for a thorough consultation regarding your hair, style and, at your
+                                                    request, the
+                                                    scalp. Collectively our barbers have 33
+                                                    years’ experience in barbering and hairdressing so we feel we are
+                                                    well placed to
+                                                    understand and execute your desired
+                                                    look and feel.
+                                                    OWAY Frequently Use Hair and Scalp Bath and Conditioner (with lemon,
+                                                    white tea
+                                                    and Anisata) are used to cleanse and
+                                                    condition the hair and scalp. After the cut and before styling,
+                                                    clients enjoy a
+                                                    cooling hot towel to relax facial
+                                                    muscles and help remove any cut hair from the face, beard and neck.
+                                                    OWAY offers
+                                                    a variety of styling products - please
+                                                    indicate your preference or ask your barber to recommend a suitable
+                                                    option.
+
+                                                    Clients younger than 12 get to take home complimentary OWAY Hair
+                                                    Bath and
+                                                    Conditioner so they can continue the The
+                                                    Barbery experience at home.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid" id="skincare-service">
+                                        <h3 class="my-2">Skin Care</h3>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Shampoo, Condition + Cut</h5>
+                                                                <h5 class="font-weight-bolder">$30</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">45 min</h6>
+                                                <p>
+                                                    Having a clear understanding of your requirements prior the
+                                                    treatment is very
+                                                    important so we have allocated enough time
+                                                    for a thorough consultation regarding your hair, style and, at your
+                                                    request, the
+                                                    scalp. Collectively our barbers have 33
+                                                    years’ experience in barbering and hairdressing so we feel we are
+                                                    well placed to
+                                                    understand and execute your desired
+                                                    look and feel.
+                                                    OWAY Frequently Use Hair and Scalp Bath and Conditioner (with lemon,
+                                                    white tea
+                                                    and Anisata) are used to cleanse and
+                                                    condition the hair and scalp. After the cut and before styling,
+                                                    clients enjoy a
+                                                    cooling hot towel to relax facial
+                                                    muscles and help remove any cut hair from the face, beard and neck.
+                                                    OWAY offers
+                                                    a variety of styling products - please
+                                                    indicate your preference or ask your barber to recommend a suitable
+                                                    option.
+
+                                                    Clients younger than 12 get to take home complimentary OWAY Hair
+                                                    Bath and
+                                                    Conditioner so they can continue the The
+                                                    Barbery experience at home.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <li class="has-menu" data-toggle="collapse" href="#collapseService3"
+                                                aria-expanded="false" aria-controls="collapseService3">
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="title d-flex justify-content-between">
+                                                    <h5>Haeckels Skin Refining Express Facial</h5>
+                                                    <h5 class="font-weight-bolder">$20</h5>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h - 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <ul class="collapse list-style-none services" id="collapseService3">
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid" id="hair-treatments">
+                                        <h3 class="my-2">Hair Treatments</h3>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Shampoo, Condition + Cut</h5>
+                                                                <h5 class="font-weight-bolder">$30</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">45 min</h6>
+                                                <p>
+                                                    Having a clear understanding of your requirements prior the
+                                                    treatment is very
+                                                    important so we have allocated enough time
+                                                    for a thorough consultation regarding your hair, style and, at your
+                                                    request, the
+                                                    scalp. Collectively our barbers have 33
+                                                    years’ experience in barbering and hairdressing so we feel we are
+                                                    well placed to
+                                                    understand and execute your desired
+                                                    look and feel.
+                                                    OWAY Frequently Use Hair and Scalp Bath and Conditioner (with lemon,
+                                                    white tea
+                                                    and Anisata) are used to cleanse and
+                                                    condition the hair and scalp. After the cut and before styling,
+                                                    clients enjoy a
+                                                    cooling hot towel to relax facial
+                                                    muscles and help remove any cut hair from the face, beard and neck.
+                                                    OWAY offers
+                                                    a variety of styling products - please
+                                                    indicate your preference or ask your barber to recommend a suitable
+                                                    option.
+
+                                                    Clients younger than 12 get to take home complimentary OWAY Hair
+                                                    Bath and
+                                                    Conditioner so they can continue the The
+                                                    Barbery experience at home.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <li class="has-menu" data-toggle="collapse" href="#collapseService3"
+                                                aria-expanded="false" aria-controls="collapseService3">
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="title d-flex justify-content-between">
+                                                    <h5>Haeckels Skin Refining Express Facial</h5>
+                                                    <h5 class="font-weight-bolder">$20</h5>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h - 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <ul class="collapse list-style-none services" id="collapseService3">
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid" id="half-head-of-highlights">
+                                        <h3 class="my-2">Half Head of Highlights</h3>
+                                        <p>Bring a little warmth back to your complexion with a half head of traditional root to tip highlights. This option applies the lightener to the top half your hair only, to lighten exactly as the sun would.</p>
+                                        <ul class="list-style-none services">
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Shampoo, Condition + Cut</h5>
+                                                                <h5 class="font-weight-bolder">$30</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">45 min</h6>
+                                                <p>
+                                                    Having a clear understanding of your requirements prior the
+                                                    treatment is very
+                                                    important so we have allocated enough time
+                                                    for a thorough consultation regarding your hair, style and, at your
+                                                    request, the
+                                                    scalp. Collectively our barbers have 33
+                                                    years’ experience in barbering and hairdressing so we feel we are
+                                                    well placed to
+                                                    understand and execute your desired
+                                                    look and feel.
+                                                    OWAY Frequently Use Hair and Scalp Bath and Conditioner (with lemon,
+                                                    white tea
+                                                    and Anisata) are used to cleanse and
+                                                    condition the hair and scalp. After the cut and before styling,
+                                                    clients enjoy a
+                                                    cooling hot towel to relax facial
+                                                    muscles and help remove any cut hair from the face, beard and neck.
+                                                    OWAY offers
+                                                    a variety of styling products - please
+                                                    indicate your preference or ask your barber to recommend a suitable
+                                                    option.
+
+                                                    Clients younger than 12 get to take home complimentary OWAY Hair
+                                                    Bath and
+                                                    Conditioner so they can continue the The
+                                                    Barbery experience at home.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut + Beard Trim with Razor</h5>
+                                                                <h5 class="font-weight-bolder">$75</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 10min min &bullet; 2
+                                                    services &bullet;
+                                                    Men Only</h6>
+                                            </li>
+                                            <li>
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <li class="has-menu" data-toggle="collapse" href="#collapseService3"
+                                                aria-expanded="false" aria-controls="collapseService3">
+                                                <div class="custom-check">
+                                                    <div class="round">
+                                                        <input type="checkbox" id="checkbox" name="service" />
+                                                        <label for="checkbox">
+                                                            <span class="radio"></span>
+                                                            <span class="title d-flex justify-content-between">
+                                                                <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                <h5 class="font-weight-bolder">$66</h5>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="title d-flex justify-content-between">
+                                                    <h5>Haeckels Skin Refining Express Facial</h5>
+                                                    <h5 class="font-weight-bolder">$20</h5>
+                                                </div>
+                                                <h6 class="font-weight-bolder text-muted">1h - 30min &bullet; 2 services
+                                                </h6>
+                                                <p>
+                                                    Your chance to be alone with your own thoughts. Or simply nod off
+                                                    into a micro
+                                                    nap. Marine Facial Cleanser is used to
+                                                    cleanse the skin from pollution, bacteria and dirt. For ten minutes,
+                                                    we apply
+                                                    the Refining Powder formulation. Zeolite
+                                                    powder extracts impurities whilst Seaweed powder replenishes the
+                                                    skin. Hot and
+                                                    cold towels follow before Eco Marine
+                                                    Cream and Rosehip + Seaweed Suspension serum.
+                                                </p>
+                                            </li>
+                                            <ul class="collapse list-style-none services" id="collapseService3">
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-check">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox" name="service" />
+                                                            <label for="checkbox">
+                                                                <span class="radio"></span>
+                                                                <span class="title d-flex justify-content-between">
+                                                                    <h5>Organic Haircut & Biodynamic Facial</h5>
+                                                                    <h5 class="font-weight-bolder">$66</h5>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bolder text-muted">1h 30min &bullet; 2
+                                                        services</h6>
+                                                    <p>
+                                                        Your chance to be alone with your own thoughts. Or simply nod
+                                                        off into a
+                                                        micro
+                                                        nap. Marine Facial Cleanser is used to
+                                                        cleanse the skin from pollution, bacteria and dirt. For ten
+                                                        minutes, we
+                                                        apply
+                                                        the Refining Powder formulation. Zeolite
+                                                        powder extracts impurities whilst Seaweed powder replenishes the
+                                                        skin.
+                                                        Hot and
+                                                        cold towels follow before Eco Marine
+                                                        Cream and Rosehip + Seaweed Suspension serum.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="step-tab-content">
+                                    <div class="list-group">
+                                        <a href="#"
+                                            class="p-4 d-flex justify-content-between align-items-center list-group-item list-group-item-action">
+                                            <h6 class="font-weight-bolder d-flex align-items-center">
+                                                <img src="./img/user/4.jpg"
+                                                    style="width: 60px;height:60px;border-radius: 100px;" />
+                                                <span class="ml-3">
+                                                    <p class="m-0">No preference</p>
+                                                </span>
+                                            </h6>
+                                            <i class="feather-chevron-right"></i>
+                                        </a>
+                                        <a href="#"
+                                            class="p-4 d-flex justify-content-between align-items-center list-group-item list-group-item-action">
+                                            <h6 class="font-weight-bolder d-flex align-items-center">
+                                                <img src="./img/user/1.jpg"
+                                                    style="width: 60px;height:60px;border-radius: 100px;" />
+                                                <span class="ml-3">
+                                                    <p class="m-0">Dana Biezalo</p>
+                                                    <p class="text-muted m-0">Hairdresser and Barber</p>
+                                                    <ul class="rating-stars list-unstyled">
+                                                        <li>
+                                                            <i class="feather-star star_active p-1 text-dark"
+                                                                style="font-size: 10px;"></i> 5.0
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            </h6>
+                                            <i class="feather-chevron-right"></i>
+                                        </a>
+                                        <a href="#"
+                                            class="p-4 d-flex justify-content-between align-items-center list-group-item list-group-item-action">
+                                            <h6 class="font-weight-bolder d-flex align-items-center">
+                                                <img src="./img/user/2.jpg"
+                                                    style="width: 60px;height:60px;border-radius: 100px;" />
+                                                <span class="ml-3">
+                                                    <p class="m-0">Cheyleigh Wicks</p>
+                                                    <p class="text-muted m-0">Barber</p>
+                                                    <ul class="rating-stars list-unstyled">
+                                                        <li>
+                                                            <i class="feather-star star_active p-1 text-dark"
+                                                                style="font-size: 10px;"></i> 5.0
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            </h6>
+                                            <i class="feather-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="step-tab-content">
+                                    <h3>Additional info and quantity</h3>
+                                    <h6 class="text-center">Quantity</h6>
+                                    <div class="form-group dateSliderPicker" style="width: 100%;text-align: center;">
+                                        <!--label for=" demo_book_date">Select Sales Person</label>
+                                        <input type="date" class="form-control" name="demo_book_date"
+                                            id="demo_book_date" value="<?php echo date(" Y-m-d") ?>"-->
+
+                                        <div class="rescalendar" id="my_calendar_simple"></div>
+                                    </div>
+                                    <ul class="list-group user_availability"
+                                        style="max-height: 400px; overflow-y: scroll;">
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 14:30:00"
+                                            data-clientselectedtime="2021-03-17 00:00:00" data-clienttimeslot="00:00">
+                                            <h6>00:00 to 00:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 15:00:00"
+                                            data-clientselectedtime="2021-03-17 00:30:00" data-clienttimeslot="00:30">
+                                            <h6>00:30 to 01:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 15:30:00"
+                                            data-clientselectedtime="2021-03-17 01:00:00" data-clienttimeslot="01:00">
+                                            <h6>01:00 to 01:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 16:00:00"
+                                            data-clientselectedtime="2021-03-17 01:30:00" data-clienttimeslot="01:30">
+                                            <h6>01:30 to 02:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 16:30:00"
+                                            data-clientselectedtime="2021-03-17 02:00:00" data-clienttimeslot="02:00">
+                                            <h6>02:00 to 02:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 17:00:00"
+                                            data-clientselectedtime="2021-03-17 02:30:00" data-clienttimeslot="02:30">
+                                            <h6>02:30 to 03:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 17:30:00"
+                                            data-clientselectedtime="2021-03-17 03:00:00" data-clienttimeslot="03:00">
+                                            <h6>03:00 to 03:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 18:00:00"
+                                            data-clientselectedtime="2021-03-17 03:30:00" data-clienttimeslot="03:30">
+                                            <h6>03:30 to 04:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 18:30:00"
+                                            data-clientselectedtime="2021-03-17 04:00:00" data-clienttimeslot="04:00">
+                                            <h6>04:00 to 04:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 19:00:00"
+                                            data-clientselectedtime="2021-03-17 04:30:00" data-clienttimeslot="04:30">
+                                            <h6>04:30 to 05:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 19:30:00"
+                                            data-clientselectedtime="2021-03-17 05:00:00" data-clienttimeslot="05:00">
+                                            <h6>05:00 to 05:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 20:00:00"
+                                            data-clientselectedtime="2021-03-17 05:30:00" data-clienttimeslot="05:30">
+                                            <h6>05:30 to 06:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 20:30:00"
+                                            data-clientselectedtime="2021-03-17 06:00:00" data-clienttimeslot="06:00">
+                                            <h6>06:00 to 06:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 21:00:00"
+                                            data-clientselectedtime="2021-03-17 06:30:00" data-clienttimeslot="06:30">
+                                            <h6>06:30 to 07:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 21:30:00"
+                                            data-clientselectedtime="2021-03-17 07:00:00" data-clienttimeslot="07:00">
+                                            <h6>07:00 to 07:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-16 22:00:00"
+                                            data-clientselectedtime="2021-03-17 07:30:00" data-clienttimeslot="07:30">
+                                            <h6>07:30 to 08:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 06:30:00"
+                                            data-clientselectedtime="2021-03-17 16:00:00" data-clienttimeslot="16:00">
+                                            <h6>16:00 to 16:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 07:00:00"
+                                            data-clientselectedtime="2021-03-17 16:30:00" data-clienttimeslot="16:30">
+                                            <h6>16:30 to 17:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 07:30:00"
+                                            data-clientselectedtime="2021-03-17 17:00:00" data-clienttimeslot="17:00">
+                                            <h6>17:00 to 17:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 08:00:00"
+                                            data-clientselectedtime="2021-03-17 17:30:00" data-clienttimeslot="17:30">
+                                            <h6>17:30 to 18:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 08:30:00"
+                                            data-clientselectedtime="2021-03-17 18:00:00" data-clienttimeslot="18:00">
+                                            <h6>18:00 to 18:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 09:00:00"
+                                            data-clientselectedtime="2021-03-17 18:30:00" data-clienttimeslot="18:30">
+                                            <h6>18:30 to 19:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 09:30:00"
+                                            data-clientselectedtime="2021-03-17 19:00:00" data-clienttimeslot="19:00">
+                                            <h6>19:00 to 19:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 10:00:00"
+                                            data-clientselectedtime="2021-03-17 19:30:00" data-clienttimeslot="19:30">
+                                            <h6>19:30 to 20:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 10:30:00"
+                                            data-clientselectedtime="2021-03-17 20:00:00" data-clienttimeslot="20:00">
+                                            <h6>20:00 to 20:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 11:00:00"
+                                            data-clientselectedtime="2021-03-17 20:30:00" data-clienttimeslot="20:30">
+                                            <h6>20:30 to 21:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 11:30:00"
+                                            data-clientselectedtime="2021-03-17 21:00:00" data-clienttimeslot="21:00">
+                                            <h6>21:00 to 21:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 12:00:00"
+                                            data-clientselectedtime="2021-03-17 21:30:00" data-clienttimeslot="21:30">
+                                            <h6>21:30 to 22:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 12:30:00"
+                                            data-clientselectedtime="2021-03-17 22:00:00" data-clienttimeslot="22:00">
+                                            <h6>22:00 to 22:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 13:00:00"
+                                            data-clientselectedtime="2021-03-17 22:30:00" data-clienttimeslot="22:30">
+                                            <h6>22:30 to 23:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 13:30:00"
+                                            data-clientselectedtime="2021-03-17 23:00:00" data-clienttimeslot="23:00">
+                                            <h6>23:00 to 23:30</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                        <a href="javascript:;"
+                                            class="list-group-item d-flex justify-content-between align-items-center selectTimeSlots"
+                                            data-salesusertime="2021-03-17 14:00:00"
+                                            data-clientselectedtime="2021-03-17 23:30:00" data-clienttimeslot="23:30">
+                                            <h6>23:30 to 00:00</h6>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <div class="step-tab-content">
+                                    <h3 class="font-weight-bolder mb-3">Confirm with card</h3>
+                                    <p>You won't be charged now, payment will be collected in store after your
+                                        appointment</p>
+                                    <div class="form-group mr-2">
+                                        <label class="font-weight-bolder">Card holder full name</label>
+                                        <input type="text" placeholder="add card holder full name"
+                                            class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bolder">Card number</label>
+                                        <input type="text" placeholder="credit or debit card numbers"
+                                            class="form-control" />
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="form-group mr-2">
+                                            <label class="font-weight-bolder">Expiry date</label>
+                                            <input type="text" placeholder="MM / YY>" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">CVV</label>
+                                            <input type="text" placeholder="123" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <!-- <h6 class="text-primary cursor-pointer" data-toggle="modal"
+                                        data-target="#previewModal">See preview
+                                    </h6> -->
+                                    <h5>Cancellation policy</h5>
+                                    <p>Cancel for free up to 48 hours ahead, otherwise you can be charged 50% of the
+                                        service price for late cancellation or
+                                        100% for not showing up.</p>
+                                    <h5>Important info from The Barbery</h5>
+                                    <p>A few things about your appointment: * Before your treatment all equipment and
+                                        surfaces which any of us might touch
+                                        during your visit including the basin, tap, shower head, worktop around the
+                                        barber station and barber chair will be
+                                        disinfected. * Please wear a face covering for arrival and after your treatment.
+                                        * I shall be asking all clients to
+                                        please wash their hands upon arrival and hand sanitiser and hand balm will be
+                                        available for your use at any time. * Your
+                                        barber will wear a face covering throughout your visit. Whilst in the chair you
+                                        are not required to wear a face covering
+                                        but please do feel free to do so if you feel it adds to your comfort and safety.
+                                        * You will be given a freshly washed
+                                        gown. * Barbers will be required to wash their hands immediately before the
+                                        start of the treatment and during as he/she
+                                        deems necessary.</p>
+                                    <div class="form-group mr-2">
+                                        <label class="font-weight-bolder">Personalised message (Optional)</label>
+                                        <textarea type="email" rows="5" name="description"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-5 py-3">
+                        <div class="shadow-sm card w-80 invoice">
+                            <div class="card-body">
+                                <div class="card-img text-center">
+                                    <img src="./img/featured1.jpg" class="rounded-circle my-2" width="100px"
+                                        height="100px" alt="profile" />
+                                </div>
+                                <div>
+                                    <h5 class="font-weight-bolder text-center">The Barbery</h5>
+                                    <p class="text-muted text-center">
+                                        29 Webber Street, London (South Bank), England
+                                    </p>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="mr-2">
+                                                <p class="px-2 py-1 font-weight-bolder rounded-circle border">1</p>
+                                            </span>
+                                            <span>
+                                                <h6 class="mb-1">A £100 Treat at The Barbery</h6>
+                                                <a class="font-weight-bolder" href="javascript:void(0)">
+                                                    <h6>Services</h6>
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <span>
+                                            <h6>$140</h6>
+                                        </span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <h4 class="font-weight-bolder">Total</h4>
+                                        <h5 class="font-weight-bolder">$100</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="m-0">
+        <div class="my-custom-header container bg-white">
+            <div class="text-right mt-3 mb-2 d-flex justify-content-between">
+                <!-- <button type="button" class="btn btn-danger font-weight-bold">Delete</button>
+                 -->
+                <div class="text-left">
+                    <p class="m-0">1 Voucher</p>
+                    <h5 class="font-weight-bold">$40</h5>
+                </div>
+                <div class="ml-auto">
+                    <button type=" button" class="mr-4 btn btn-outline-secondary font-weight-bold"
+                        onclick="history.back();">Cancel</button>
+                    <button type="button" class="btn btn-primary font-weight-boldnext-step"
+                        onclick="nextPrev(1)">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModal">Email voucher</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="text-muted">Voucher email subject:</span> £100 Treat at The Barbery from Dhaval
+                            Makwana
+                        </div>
+                        <div class="card-body">
+                            <p>£100 to redeem on any products or services at our Webber Street salon. Book at:
+                                www.thebarberylondon.com</p>
+                            <div class="card voucher-card black mb-2">
+                                <div class="card-body text-white p-6">
+                                    <div
+                                        class="p-10 text-center voucher-wrapper text-white justify-content-center bgi-size-cover bgi-no-repeat">
+                                        <div class="p-4 text-center">
+                                            <h3 class="font-weight-bold">A £100 Treat at The Barbery</h3>
+                                            <h5 class="text-grey">£100 Voucher price</h5>
+                                        </div>
+                                        <div class="border-bottom w-100 opacity-20"></div>
+                                        <div class="my-5 vouchers-value add-vouchers-value">
+                                            <p class="font-weight-bolder text-white my-1 font-size-lg">Voucher
+                                                Value</p>
+                                            <h3 class="my-2 font-weight-bolder">CA $<span
+                                                    id="vaoucher-price">£100</span>
+                                            </h3>
+                                        </div>
+                                        <div class="border-bottom w-100 opacity-20"></div>
+                                        <div class="my-5 vouchers-bottom my-2">
+                                            <p class="mb-1 text-white font-weight-bold font-size-lg">Redeem on
+                                                <span class="text-white font-weight-bolder cursor-pointer">all
+                                                    services</span> <i class="fa fa-chevron-right icon-sm"></i>
+                                            </p>
+                                            <p class="mb-1 text-white font-weight-bold font-size-lg">Valid until
+                                                2 Jul 2021
+                                            </p>
+                                            <p class="mb-1 text-white font-weight-bold font-size-lg">For
+                                                multiple-use</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- slick Slider JS-->
+    <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+    <!-- Sidebar JS-->
+    <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script type="text/javascript" src="js/osahan.js"></script>
+
+    <script type="text/javascript" src="vendor/rescalendar/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="vendor/rescalendar/js/rescalendar.js"></script>
+    <script>
+        $('#my_calendar_simple').rescalendar({
+            id: 'my_calendar_simple',
+            jumpSize: 3,
+            calSize: 6,
+            dataKeyField: 'name',
+            dataKeyValues: ['']
+        });
+    </script>
+    <script>
+        $(function () {
+            $(".loader").show();
+            $.ajax({
+                type: "POST",
+                url: getUrl + "/deals/detectUserTimezone",
+                data: getTimeZoneData(),
+                dataType: 'json',
+                success: function (response) {
+                    $(".loader").hide();
+                    $("#timezone").val(response.timezone);
+                    $("#demo_book_date").val(response.date);
+                }
+            });
+        });
+
+        // function activeTab() {
+        //     $(this).addClass("active");
+        // }
+        $(function () {
+            $('.cata-sub-nav ul li').on('click', function () {
+                $(this).parent().find('li.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+
+        $(document).ready(function () {
+            var topHeader = $('.my-custom-header').outerHeight();
+            var serviceHeader = $('.service-menu').outerHeight();
+            // var totalHeader = parseFloat(topHeader) + parseFloat(serviceHeader);
+            // $('ul.nav li').on('click', function () {
+            //     $('#my-card-body .container-fluid').css('padding-top', serviceHeader + 'px');
+            // });
+        });
+
+        $(document).on('click', '.selectTimeSlots', function () {
+            var salesUserTime = $(this).attr('data-salesUserTime');
+            var clientSelectedTime = $(this).attr('data-clientSelectedTime');
+            var clientTimeSlot = $(this).attr('data-clientTimeSlot');
+
+            $("#demo_event_datetime").val(salesUserTime);
+            $("#demo_event_client_datetime").val(clientSelectedTime);
+
+            $(".submitButton").show();
+        });
+
+        $('#clientSaveDemo').validate({
+            rules: {
+                timezone: {
+                    required: true
+                },
+                demo_attend_userid: {
+                    required: true
+                }
+            },
+            submitHandler: function (form) {
+                $(".loader").show();
+                if ($("#demo_event_datetime").val() == '') {
+                    $(".loader").hide();
+                    $.toaster({ priority: 'danger', title: 'Fail', message: 'Date and Time is required!' });
+                } else if ($("#demo_event_client_datetime").val() == '') {
+                    $(".loader").hide();
+                    $.toaster({ priority: 'danger', title: 'Fail', message: 'Date and Time is required!' });
+                } else {
+
+                    $("#saveClientTimeBooking").attr('disabled', true);
+                    $.ajax({
+                        url: getUrl + '/deals/clientSaveDemobooking',
+                        type: "POST",
+                        data: $('#clientSaveDemo').serialize(),
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.status == true) {
+                                $.toaster({ priority: 'success', title: 'Success', message: 'Demo booking date and time saved succesfully.' });
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1600);
+                            } else {
+                                $(".loader").hide();
+                                $("#saveClientTimeBooking").attr('disabled', false);
+                                $.toaster({ priority: 'danger', title: 'Fail', message: 'Something went wrong!' });
+                                return false;
+                            }
+                        },
+                        timeout: 10000,
+                        error: function (e) {
+                            $(".loader").hide();
+                            $("#saveClientTimeBooking").attr('disabled', false);
+                            $.toaster({ priority: 'danger', title: 'Fail', message: 'Something went wrong!' });
+                            return false;
+                        }
+                    });
+                }
+                return false;
+            }
+        });
+    </script>
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var tab = document.getElementsByClassName("step-tab-content");
+            tab[n].style.display = "block";
+            if (n == (tab.length - 1)) {
+                $(".previous").show();
+                $(".steps").text("4");
+                $(".next-step").text("Save");
+
+            } else {
+                $(".previous").hide();
+                $(".next-step").text("Next Step");
+            }
+
+            if (n == 0) {
+                $(".steps").text("1");
+                $(".page-title").text("About your business");
+            } else if (n == 1) {
+                $(".previous").show();
+                $(".steps").text("2");
+                $(".page-title").text("Add quantity");
+            } else if (n == 2) {
+                $(".previous").show();
+                $(".steps").text("3");
+                $(".page-title").text("Choose a recipient");
+            }
+            else if (n == 3) {
+                $(".previous").show();
+                $(".steps").text("4");
+                $(".page-title").text("Print as gift");
+            }
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var tab = document.getElementsByClassName("step-tab-content");
+            // Hide the current tab:
+            tab[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the tab
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+    </script>
+    <script>
+        var QtyInput = (function () {
+            var $qtyInputs = $(".qty-input");
+
+            if (!$qtyInputs.length) {
+                return;
+            }
+
+            var $inputs = $qtyInputs.find(".product-qty");
+            var $countBtn = $qtyInputs.find(".qty-count");
+            var qtyMin = parseInt($inputs.attr("min"));
+            var qtyMax = parseInt($inputs.attr("max"));
+
+            $inputs.change(function () {
+                var $this = $(this);
+                var $minusBtn = $this.siblings(".qty-count--minus");
+                var $addBtn = $this.siblings(".qty-count--add");
+                var qty = parseInt($this.val());
+
+                if (isNaN(qty) || qty <= qtyMin) {
+                    $this.val(qtyMin);
+                    $minusBtn.attr("disabled", true);
+                } else {
+                    $minusBtn.attr("disabled", false);
+
+                    if (qty >= qtyMax) {
+                        $this.val(qtyMax);
+                        $addBtn.attr('disabled', true);
+                    } else {
+                        $this.val(qty);
+                        $addBtn.attr('disabled', false);
+                    }
+                }
+            });
+
+            $countBtn.click(function () {
+                var operator = this.dataset.action;
+                var $this = $(this);
+                var $input = $this.siblings(".product-qty");
+                var qty = parseInt($input.val());
+
+                if (operator == "add") {
+                    qty += 1;
+                    if (qty >= qtyMin + 1) {
+                        $this.siblings(".qty-count--minus").attr("disabled", false);
+                    }
+
+                    if (qty >= qtyMax) {
+                        $this.attr("disabled", true);
+                    }
+                } else {
+                    qty = qty <= qtyMin ? qtyMin : (qty -= 1);
+
+                    if (qty == qtyMin) {
+                        $this.attr("disabled", true);
+                    }
+
+                    if (qty < qtyMax) {
+                        $this.siblings(".qty-count--add").attr("disabled", false);
+                    }
+                }
+
+                $input.val(qty);
+            });
+        })();
+    </script> 
+    <script>
+        (function($) { 
+            $(".cata-sub-nav").on('scroll', function() {
+                $val = $(this).scrollLeft();
+
+                if($(this).scrollLeft() + $(this).innerWidth()>=$(this)[0].scrollWidth){
+                  $(".nav-next").hide();
+                } else {
+                    $(".nav-next").show();
+                }
+
+                if($val == 0){
+                    $(".nav-prev").hide();
+                } else {
+                    $(".nav-prev").show();
+                }
+            });
+            console.log( 'init-scroll: ' + $(".nav-next").scrollLeft() );
+            $(".nav-next").on("click", function(){
+                $(".cata-sub-nav").animate( { scrollLeft: '+=460' }, 200);
+                
+            });
+            $(".nav-prev").on("click", function(){
+                $(".cata-sub-nav").animate( { scrollLeft: '-=460' }, 200);
+            }); 
+        })(jQuery);
+    </script>
+</body>
+
+</html>

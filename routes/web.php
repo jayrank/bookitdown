@@ -339,6 +339,9 @@ Route::group(['prefix' => 'partners','middleware'=>'PreventBackHistory'], functi
 		Route::post('/addCancellationReason',[App\Http\Controllers\SetupController::class, 'addCancellationReason'])->name('addCancellationReason');
 		Route::post('/editCancellationReason',[App\Http\Controllers\SetupController::class, 'editCancellationReason'])->name('editCancellationReason');
 		Route::post('/deleteCancellationReason',[App\Http\Controllers\SetupController::class, 'deleteCancellationReason'])->name('deleteCancellationReason');
+
+		Route::get('/telnyx_setting',[App\Http\Controllers\SetupController::class, 'telnyx_setting'])->name('telnyx_setting');
+		Route::post('/saveTelnyxSetting',[App\Http\Controllers\SetupController::class, 'saveTelnyxSetting'])->name('saveTelnyxSetting');
 	});
 
 	//Voucher
@@ -851,4 +854,4 @@ Route::group(['prefix' => 'partners','middleware'=>'PreventBackHistory'], functi
 	});	
 });
 Route::get('/tilled_form',[App\Http\Controllers\TilledController::class, 'index']);
-Route::post('/submitTilled',[App\Http\Controllers\TilledController::class, 'submitTilled'])->name('submitTilled');
+Route::get('/submitTilled/{accId}',[App\Http\Controllers\TilledController::class, 'submitTilled'])->name('submitTilled');

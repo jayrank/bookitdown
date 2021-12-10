@@ -2256,4 +2256,35 @@ class SetupController extends Controller
             return JsonReturn::success($data);     
         }
 	}
+
+    public function telnyx_setting(){
+        $CurrentUser = auth::user();
+        return view('setup.telnyx_setting',compact('CurrentUser'));
+    }
+
+    public function saveTelnyxSetting(Request $request){
+        if ($request->ajax()) 
+        {
+            $CurrentUser = auth::user();
+			$is_admin = $CurrentUser->is_admin;
+            if($is_admin == 0){
+                $CurrentAdmin = User::find(Auth::id());
+                $CurrentAdmin->telnyx_username = $request->telnyx_username;
+                $CurrentAdmin->telnyx_token = $request->telnyx_token;
+                $CurrentAdmin->telnyx_api_key = $request->telnyx_api_key;
+                $CurrentAdmin->sms_service_type = $request->sms_service_type;
+                if($CurrentAdmin->save()){
+                    $data["status"] = true;
+					$data["message"] = "Telnyx setting saved successfully.";
+                }else{
+                    $data["status"] = false;
+					$data["message"] = "Something went wrong.";
+                }
+            }else{
+                $data["status"] = false;
+				$data["message"] = "Unable to save data. Permission denied.";
+            }
+            return JsonReturn::success($data);
+        }
+    }
 }

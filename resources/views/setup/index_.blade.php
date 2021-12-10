@@ -183,6 +183,13 @@
 															appointments
 														</p>
 													</li>
+													{{-- <li>
+														<a class="" href="{{ route('telnyx_setting') }}">Telnyx Setting</a>
+														<p class="text-dark-50">
+															Track why clients did not arrive for their
+															appointments
+														</p>
+													</li> --}}
 												</ul>
 											</div>
 										</div>
